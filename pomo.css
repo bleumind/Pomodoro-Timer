@@ -1,26 +1,68 @@
-h1 {
-  color: rgb(255, 93, 17);
-  font-size: 40px;
-  height: 3em;
-  text-shadow: black(1, 0, 0, 2);
-  padding-top: 18%;
-
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background: linear-gradient(cyan, rgba(255, 255, 255, 0)),
-    linear-gradient(-45deg, magenta, rgba(255, 255, 255, 0)),
-    linear-gradient(45deg, orange, rgba(255, 255, 255, 0));
-  background-blend-mode: screen;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  /* line-height: 1.7; */
+  color: #777;
+  height: 95vh;
+  background-image: linear-gradient(
+      to right,
+      rgb(255, 169, 8, 0),
+      rgb(255, 90, 24, 0)
+    ),
+    url("images/background-image.jpg");
+  background-size: cover;
+  background-image: center;
+  margin: 1em;
 }
-p,
-#timer {
-  font-size: 3em;
-  color: rgb(199, 229, 255);
+
+h1 {
+  letter-spacing: 0.25em;
+  padding-top: 1em;
+}
+
+.heading {
+  color: azure;
+  text-align: center;
+  padding: 0.5em;
+}
+
+.heading-main {
+  font-size: 50px;
+  padding-top: 0.5em;
+}
+
+.heading-mid {
+  font-size: 30px;
+}
+
+.heading-sub {
+  font-size: 20px;
+}
+
+p {
+  color: azure;
+  font-family: "Work Sans", sans-serif;
+  font-size: 100px;
+  padding-top: 150px;
   text-align: center;
 }
 
 .options {
   text-align: center;
+  padding-top: 10em;
+}
+
+#timer {
+  left: auto;
+  right: auto;
+  left: 0;
+  right: 0;
+  position: absolute;
 }
