@@ -16,7 +16,7 @@ body {
       rgb(255, 169, 8, 0),
       rgb(255, 90, 24, 0)
     ),
-    url("images/background-image.jpg");
+    url("background-image.jpg");
   background-size: cover;
   background-image: center;
   margin: 1em;
