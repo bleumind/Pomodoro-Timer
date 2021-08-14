@@ -8,4 +8,4 @@ A: The Pomodoro Technique is a time management method developed by Francesco Cir
 traditionally 25 minutes in length, separated by short breaks.
 
 Here you can track your progress, document your learning hours, and set custom timers and break periods.
-But, to keep track of your progress and documenting your learning hours, you need to create an account to store data.
+But, to keep track of your progress and documenting your learning hours, you need to create an account.
