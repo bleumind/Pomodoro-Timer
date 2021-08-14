@@ -1,4 +1,4 @@
-I wanted a website to help me focus on projects and learning while keeping track of progress on different subjects. 
+A website to help me focus on projects and studies, while keeping track of my progress on different subjects. 
 
 My personal goal is to reach 1000 hours of javascript learning/projects, and with the help of this new web application I made, I can help myself focus using a 
 personal timer and track my progress.
