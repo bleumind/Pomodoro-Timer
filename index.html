@@ -6,6 +6,7 @@
     Pomodoro Timer
   </title>
   <link href="pomo.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Overpass+Mono&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Work+Sans:wght@300&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
 </head>
@@ -15,21 +16,33 @@
     <h1 class="heading">
       <!-- <span class="heading-main">Poro</span><br> -->
       <span class="heading-mid">The Best Pomodoro Timer</span><br>
-      <span class="heading-sub">A Minimalist Progress Tracker and Timer</span>
+      <span class="heading-sub">A Minimalist Productivity Tracker and Timer</span>
     </h1>
   </header>
   <nav>
     
   </nav>
     
-  <p><time id="timer">25 : 00</time></p>
-  
-  <div class="options">
-    <button type="button" class="pause">Pause</button>
+  <div class="daily-tracker--container">
+    <p id="total-time">Daily Total Time:   0 Hr, 0 Min, 0 Sec</p>
+  </div>
+
+  <p>
+    <time id="timer">25:00</time>
+    <!-- <time id="break-timer">5:00</time> -->
+    <time id="extra-study-timer">Extra Time: +00:00</time>
+    <time id="extra-break-timer">00:00</time>
+  </p>
+
+  <div class="button-container">
     <button type="button" class="resume">Play</button>
-    <button type="button" class="restart">Restart</button>
+    <div class="restart-btn">
+      <button type="button" class="restart"></button>
+    </div>
   </div>
 
 
 </body>
 <script src="pomo.js"></script>
+
+</html>
