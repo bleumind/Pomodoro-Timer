@@ -11,8 +11,8 @@ const fadeEffect = document.querySelector(".restart-fade");
 const totalTime = document.querySelector("#total-time");
 
 // Progress Timer
-let startingMinutes = 1;
-let breakMinutes = 1;
+let startingMinutes = 25;
+let breakMinutes = 5;
 let time = (t) => t * 60;
 let mainTime = time(startingMinutes);
 let breakTime = time(breakMinutes);
@@ -29,25 +29,34 @@ let xsTimerActive;
 let xsMinuteTime = 0;
 let xsTime = 0;
 
+
 // Updating Every Timer Count
 function updateTimer() {
+
+
   let minutes = Math.floor(mainTime / 60);
   minutes = minutes >= 10 ? minutes : "0" + minutes;
 
   let seconds = mainTime % 60;
   seconds = seconds < 10 ? "0" + seconds : seconds;
-
+  
+  if (minutes === '00:00' || seconds < 0){
+    isRunning = false;
+    clearInterval(timerActive);
+}
+  
   timer.innerHTML = `${minutes}:${seconds}`;
   mainTime--;
 
-  if (minutes === "00" && seconds === "00") {
+  if (Number(minutes) <= 0 && Number(seconds) <= 0) {
+    extraStudyTimer.style.display = "block";
     clearInterval(timerActive);
     isRunning = false;
-    xsTimerActive = setInterval(updateXStimer, 1000);
     xsIsRunning = true;
-    extraStudyTimer.style.display = "block";
-    mainTime = time(startingMinutes);
+    xsTimerActive = setInterval(updateXStimer, 1000);
+    
   }
+
   if (!isRunning) {
     restart.style.display = "none";
   }
@@ -63,18 +72,21 @@ function updateXStimer() {
   xsMinutes = xsMinuteTime < 10 ? "0" + xsMinuteTime : xsMinuteTime;
 
   let xsSeconds = xsTime;
+
   xsSeconds = xsSeconds < 10 ? "0" + xsSeconds : xsSeconds;
   extraStudyTimer.innerHTML = `Extra Time: +${xsMinutes}:${xsSeconds}`;
   xsTime++;
+
 }
 
 function updateBreakTimer() {
   let minutes = Math.floor(breakTime / 60);
-  minutes = minutes >= 10 ? minutes : "0" + minutes;
+  minutes = minutes >= 10 ?  minutes : "0" + minutes;
 
   let seconds = breakTime % 60;
   seconds = seconds < 10 ? "0" + seconds : seconds;
 
+  console.log(minutes.length)
   timer.innerHTML = `${minutes}:${seconds}`;
   breakTime--;
 
@@ -88,7 +100,12 @@ function updateBreakTimer() {
       startingMinutes < 10 ? "0" + startingMinutes : startingMinutes
     }:00`;
     play.style.display = "block";
-  }
+   
+    mainTime = time(startingMinutes);
+    updateTimer();
+  };
+
+
 }
 
 // Record Daily Total Progress
@@ -129,17 +146,13 @@ restart.addEventListener("click", function () {
 
 // Function Code For Timing Conditions
 function timingConditions() {
-  if (breakIsRunningToggle === 2) {
-    clearInterval(timerActive);
-    timerActive = setInterval(updateTimer, 1);
-  }
 
   if (isRunning) {
     clearInterval(timerActive);
     isRunning = false;
     play.innerHTML = "Play";
   } else if (!isRunning && !xsIsRunning && !breakIsRunning) {
-    timerActive = setInterval(updateTimer, 1);
+    timerActive = setInterval(updateTimer, 1000);
     isRunning = true;
     play.innerHTML = "Pause";
   }
@@ -155,22 +168,32 @@ function timingConditions() {
 
     extraStudyTimer.innerHTML = "Break-Time! :)";
     extraStudyTimer.style.color = "azure";
-    totalTime.innerHTML = `Daily Total Time:   ${totalHour} Hr, ${totalMinute} Min, ${totalSecond} Sec`;
+    totalTime.innerHTML = `Daily Total Time:   ${totalHour} Hr : ${totalMinute} Min : ${totalSecond} Sec`;
     play.innerHTML = "Play";
     timer.style.color = "rgb(125, 255, 125)";
-    breakMinutes < 10
+    
+    breakMinutes < 10 && breakMinutes[0] !== "0"
       ? (breakMinutes = "0" + breakMinutes)
       : (breakMinutes = breakMinutes);
     timer.innerHTML = `${breakMinutes}:00`;
+  
     breakIsRunning = true;
     // breakTimeIsRunning = setInterval(updateBreakTimer(), 1000);
   }
 
+  // breakIsRunningToggle = breakIsRunningToggle > 0 && breakIsRunningToggle % 2 === 0 ? breakIsRunningToggle++ : breakIsRunningToggle;
+  
   if (breakIsRunning) {
-    if (breakIsRunningToggle === 1) {
-      breakTimerActive = setInterval(updateBreakTimer, 1);
+    if (breakIsRunningToggle % 2 === 1) {
+      breakTimerActive = setInterval(updateBreakTimer, 1000);
       play.style.display = "none";
+      breakIsRunningToggle++;
+    } else if (breakIsRunningToggle % 2 === 0 && breakIsRunningToggle > 0) {
+    breakTime = time(breakMinutes);
+    breakIsRunningToggle--;
     }
-    breakIsRunningToggle = breakIsRunningToggle === 0 ? 1 : 2;
+    if (breakIsRunningToggle === 0) {
+      breakIsRunningToggle = breakIsRunningToggle === 0 ? 3 : 4;
+    }
   }
-}
+};
