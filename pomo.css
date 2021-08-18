@@ -10,7 +10,7 @@ body {
   font-size: 16px;
   color: #777;
   height: 95vh;
-  background-image: url("https://github.com/bleumind/Pomodoro-Timer/blob/edcecb344fda6eb9ac371af33008268cea24f546/background-image.jpg");
+  background-image: url("Pomodoro-Timer/background-image.jpg");
   background-size: cover;
   background-image: center;
   margin: 1em;
